@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#003554">
+    <title>{% block title %}Prazo Certo{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="{{ pagina }}">
+    <aside class="sidebar">
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            <span class="brand-symbol">PC</span>
+            <span class="brand-name">Prazo Certo</span>
+        </a>
+        <nav class="main-nav" aria-label="Navegação principal">
+            <a class="nav-link{% if pagina == 'dashboard' %} active{% endif %}" href="{{ url_for('dashboard') }}">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.4a.8.8 0 0 1-.8.8h-5.4v-6H9.2v6H3.8a.8.8 0 0 1-.8-.8z"/></svg>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link{% if pagina == 'calendario' %} active{% endif %}" href="{{ url_for('calendario') }}">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg>
+                <span>Calendário</span>
+            </a>
+            <a class="nav-link{% if pagina == 'estoque' %} active{% endif %}" href="{{ url_for('estoque') }}">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 7 8-4 8 4-8 4zM4 7v10l8 4 8-4V7M12 11v10"/></svg>
+                <span>Estoque</span>
+            </a>
+            <a class="nav-link{% if pagina == 'categorias' %} active{% endif %}" href="{{ url_for('categorias') }}">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>
+                <span>Categorias</span>
+            </a>
+        </nav>
+        <div class="sidebar-assistant">
+            <span class="assistant-icon">✓</span>
+            <div>
+                <strong>Validade monitorada</strong>
+                <p>Consulte os alertas para agir antes do vencimento.</p>
+            </div>
+        </div>
+        <div class="sidebar-user">
+            <span class="user-avatar">PC</span>
+            <div><strong>Prazo Certo</strong><small>Gestão de estoque</small></div>
+        </div>
+    </aside>
+
+    <div class="app-shell">
+        <header class="page-header">
+            <div>
+                <p class="breadcrumb">Prazo Certo <span>›</span> {% block breadcrumb %}{% endblock %}</p>
+                <h1>{% block page_title %}{% endblock %}</h1>
+                <p class="page-subtitle">{% block page_subtitle %}{% endblock %}</p>
+            </div>
+            <button class="notification-button" id="open-notifications" type="button" aria-label="Abrir notificações">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 6-3 8-3 8h18s-3-2-3-8M14 20h-4"/></svg>
+                <span id="notification-count" hidden>0</span>
+            </button>
+        </header>
+        <main class="page-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="notification-drawer" id="notification-drawer" aria-label="Notificações">
+        <div class="drawer-header">
+            <div><h2>Notificações</h2><p>Alertas de validade dos seus lotes.</p></div>
+            <button class="icon-button" id="close-notifications" type="button" aria-label="Fechar notificações">×</button>
+        </div>
+        <div id="notification-list" class="notification-list"></div>
+    </aside>
+
+    {% block dialogs %}{% endblock %}
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

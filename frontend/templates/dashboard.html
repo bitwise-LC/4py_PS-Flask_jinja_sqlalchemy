@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Prazo Certo{% endblock %}
+{% block breadcrumb %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block page_subtitle %}Visualize um resumo do estoque e acompanhe seus produtos.{% endblock %}
+
+{% block content %}
+<section class="metric-grid" aria-label="Indicadores de validade">
+    <article class="metric-card accent-blue">
+        <span class="metric-label">Total de lotes</span>
+        <strong id="dashboard-total-lotes">0</strong>
+        <small>lotes monitorados</small>
+    </article>
+    <article class="metric-card accent-slate">
+        <span class="metric-label">Unidades em estoque</span>
+        <strong id="dashboard-total-unidades">0</strong>
+        <small>produtos registrados</small>
+    </article>
+    <article class="metric-card accent-red">
+        <span class="metric-label">Lotes vencidos</span>
+        <strong id="dashboard-vencidos">0</strong>
+        <small>exigem retirada</small>
+    </article>
+    <article class="metric-card accent-orange">
+        <span class="metric-label">Vencem em 7 dias</span>
+        <strong id="dashboard-criticos">0</strong>
+        <small>prioridade máxima</small>
+    </article>
+    <article class="metric-card accent-purple">
+        <span class="metric-label">Vencem em 30 dias</span>
+        <strong id="dashboard-atencao">0</strong>
+        <small>merecem atenção</small>
+    </article>
+    <article class="metric-card accent-green">
+        <span class="metric-label">Lotes válidos</span>
+        <strong id="dashboard-validos">0</strong>
+        <small>mais de 30 dias</small>
+    </article>
+</section>
+
+<section class="dashboard-layout">
+    <article class="surface">
+        <div class="surface-header">
+            <div><span class="section-kicker">PRIORIDADES</span><h2>Próximos vencimentos</h2></div>
+            <a class="text-link" href="{{ url_for('estoque') }}?aba=lotes">Ver estoque</a>
+        </div>
+        <div class="upcoming-list" id="dashboard-proximos"></div>
+    </article>
+    <article class="surface validity-summary">
+        <div class="surface-header"><div><span class="section-kicker">SAÚDE DO ESTOQUE</span><h2>Distribuição dos lotes</h2></div></div>
+        <div class="donut" id="validity-donut"><span id="dashboard-percentual">0%</span></div>
+        <p>Percentual de lotes com mais de 30 dias de validade.</p>
+        <div class="summary-legend"><span><i class="dot green"></i>Válidos</span><span><i class="dot orange"></i>Até 30 dias</span><span><i class="dot red"></i>Vencidos</span></div>
+    </article>
+</section>
+{% endblock %}

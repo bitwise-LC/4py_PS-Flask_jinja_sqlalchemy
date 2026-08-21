@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Calendário | Prazo Certo{% endblock %}
+{% block breadcrumb %}Calendário{% endblock %}
+{% block page_title %}Calendário de validade{% endblock %}
+{% block page_subtitle %}Veja em quais dias os lotes atingem a data de vencimento.{% endblock %}
+
+{% block content %}
+<section class="calendar-toolbar">
+    <button class="round-button" id="calendar-previous" type="button" aria-label="Mês anterior">‹</button>
+    <h2 id="calendar-title"></h2>
+    <button class="round-button" id="calendar-next" type="button" aria-label="Próximo mês">›</button>
+</section>
+<section class="calendar-layout">
+    <article class="calendar-card">
+        <div class="weekdays"><span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span></div>
+        <div class="calendar-days" id="calendar-days"></div>
+    </article>
+    <aside class="calendar-detail surface">
+        <span class="section-kicker">VENCIMENTOS</span>
+        <h2 id="calendar-detail-title">Selecione um dia</h2>
+        <p class="muted">Clique em uma data marcada para consultar os lotes.</p>
+        <div id="calendar-detail-list" class="calendar-detail-list"></div>
+        <div class="calendar-legend"><span><i class="dot red"></i>Vencido</span><span><i class="dot orange"></i>Crítico</span><span><i class="dot purple"></i>Atenção</span><span><i class="dot green"></i>Válido</span></div>
+    </aside>
+</section>
+{% endblock %}

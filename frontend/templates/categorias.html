@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Categorias | Prazo Certo{% endblock %}
+{% block breadcrumb %}Categorias{% endblock %}
+{% block page_title %}Categorias{% endblock %}
+{% block page_subtitle %}Organize os produtos para facilitar consultas e filtros.{% endblock %}
+
+{% block content %}
+<section class="action-bar compact">
+    <label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="category-search" type="search" placeholder="Pesquisar categoria"></label>
+    <button class="primary-button" id="new-category" type="button">+ Nova categoria</button>
+</section>
+<section class="category-grid" id="category-grid"></section>
+{% endblock %}
+
+{% block dialogs %}
+<dialog class="form-dialog" id="category-dialog">
+    <form id="category-form">
+        <div class="dialog-header"><div><span class="section-kicker">ORGANIZAÇÃO</span><h2 id="category-dialog-title">Nova categoria</h2></div><button class="icon-button" type="button" data-close-dialog>×</button></div>
+        <input id="category-id" type="hidden">
+        <label class="field">Nome da categoria <b>*</b><input id="category-name" type="text" required minlength="2" maxlength="80" placeholder="Ex.: Bebidas"></label>
+        <label class="field">Descrição <b>*</b><textarea id="category-description" required minlength="3" maxlength="255" placeholder="Descreva os produtos desta categoria"></textarea></label>
+        <div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog>Cancelar</button><button class="primary-button" type="submit">Salvar categoria</button></div>
+    </form>
+</dialog>
+{% endblock %}

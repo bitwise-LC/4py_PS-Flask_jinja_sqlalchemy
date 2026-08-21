@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Estoque | Prazo Certo{% endblock %}
+{% block breadcrumb %}Estoque{% endblock %}
+{% block page_title %}Estoque{% endblock %}
+{% block page_subtitle %}Cadastre produtos, acompanhe lotes e controle os vencimentos.{% endblock %}
+
+{% block content %}
+<section class="stock-hero">
+    <label class="stock-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="stock-search" type="search" placeholder="Pesquise no estoque">
+    </label>
+    <button class="light-button" id="new-product" type="button">+ Cadastrar produto</button>
+    <button class="primary-button" id="new-batch" type="button">+ Cadastrar lote</button>
+</section>
+
+<div class="stock-tabs" role="tablist" aria-label="Conteúdo do estoque">
+    <button class="stock-tab active" type="button" data-stock-tab="produtos">Produtos</button>
+    <button class="stock-tab" type="button" data-stock-tab="lotes">Lotes e validades</button>
+</div>
+
+<section class="stock-panel active" id="stock-products" data-stock-panel="produtos">
+    <div class="filter-row">
+        <select id="product-category-filter"><option value="">Todas as categorias</option></select>
+        <span class="result-count" id="product-result-count">0 produtos</span>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+</section>
+
+<section class="stock-panel" id="stock-batches" data-stock-panel="lotes">
+    <div class="filter-row">
+        <select id="batch-status-filter">
+            <option value="">Todas as validades</option>
+            <option value="vencido">Vencidos</option>
+            <option value="critico">Críticos · até 7 dias</option>
+            <option value="atencao">Atenção · até 30 dias</option>
+            <option value="valido">Válidos · acima de 30 dias</option>
+        </select>
+        <select id="batch-product-filter"><option value="">Todos os produtos</option></select>
+        <span class="result-count" id="batch-result-count">0 lotes</span>
+    </div>
+    <article class="surface table-surface">
+        <div class="table-scroll">
+            <table>
+                <thead><tr><th>Lote</th><th>Produto</th><th>Fabricação</th><th>Validade</th><th>Quantidade</th><th>Situação</th><th></th></tr></thead>
+                <tbody id="batch-table"></tbody>
+            </table>
+        </div>
+    </article>
+</section>
+{% endblock %}
+
+{% block dialogs %}
+<dialog class="form-dialog wide" id="product-dialog">
+    <form id="product-form">
+        <div class="dialog-header"><div><span class="section-kicker">CATÁLOGO</span><h2 id="product-dialog-title">Cadastrar produto</h2><p>Informe os dados básicos para adicionar o item ao estoque.</p></div><button class="icon-button" type="button" data-close-dialog>×</button></div>
+        <input id="product-id" type="hidden">
+        <div class="form-grid">
+            <label class="field">Código do produto <b>*</b><input id="product-code" type="text" required minlength="2" maxlength="40" placeholder="Ex.: PROD-001"></label>
+            <label class="field">Nome do produto <b>*</b><input id="product-name" type="text" required minlength="2" maxlength="120" placeholder="Ex.: Iogurte natural"></label>
+        </div>
+        <label class="field">Descrição <b>*</b><textarea id="product-description" required minlength="3" maxlength="255" placeholder="Descreva o produto"></textarea></label>
+        <fieldset class="category-options"><legend>Categorias <b>*</b></legend><div id="product-category-options"></div></fieldset>
+        <div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog>Cancelar</button><button class="primary-button" type="submit">Salvar produto</button></div>
+    </form>
+</dialog>
+
+<dialog class="form-dialog wide" id="batch-dialog">
+    <form id="batch-form">
+        <div class="dialog-header"><div><span class="section-kicker">VALIDADE</span><h2 id="batch-dialog-title">Cadastrar lote</h2><p>Registre a quantidade e o período de validade do produto.</p></div><button class="icon-button" type="button" data-close-dialog>×</button></div>
+        <input id="batch-id" type="hidden">
+        <div class="form-grid">
+            <label class="field">Número do lote <b>*</b><input id="batch-number" type="text" required minlength="2" maxlength="50" placeholder="Ex.: LOTE-2026-01"></label>
+            <label class="field">Produto <b>*</b><select id="batch-product" required><option value="">Selecione um produto</option></select></label>
+        </div>
+        <div class="form-grid">
+            <label class="field">Data de fabricação <b>*</b><input id="batch-manufacture" type="date" required></label>
+            <label class="field">Data de validade <b>*</b><input id="batch-expiry" type="date" required></label>
+        </div>
+        <label class="field">Quantidade de produtos <b>*</b><input id="batch-quantity" type="number" required min="1" step="1" placeholder="Ex.: 24"></label>
+        <div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog>Cancelar</button><button class="primary-button" type="submit">Salvar lote</button></div>
+    </form>
+</dialog>
+{% endblock %}
