@@ -6,7 +6,7 @@ O projeto utiliza Flask, Jinja, Flask-SQLAlchemy, SQLite, CSS e JavaScript modul
 
 ## Preview
 
-![Preview](./recording.mkv)
+![Preview](./recording.mp4)
 
 ## Funcionalidades Implementadas
 
