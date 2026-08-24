@@ -4,13 +4,9 @@ Sistema web para cadastro de produtos, organização por categorias e controle d
 
 O projeto utiliza Flask, Jinja, Flask-SQLAlchemy, SQLite, CSS e JavaScript modular. Todas as operações persistentes, validações, classificações de validade, alertas e indicadores são processados pelo backend.
 
-## Preview
+## Video Preview
 
 https://github.com/user-attachments/assets/9f0cc18b-84eb-4ad2-bd11-4465383480fc
-
-## Video
-
-<video src="/https://github.com/user-attachments/assets/9f0cc18b-84eb-4ad2-bd11-4465383480fc)" controls></video>
 
 ## Funcionalidades Implementadas
 
