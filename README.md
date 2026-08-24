@@ -6,7 +6,8 @@ O projeto utiliza Flask, Jinja, Flask-SQLAlchemy, SQLite, CSS e JavaScript modul
 
 ## Preview
 
-![Preview](./recording.mp4)
+![Preview](https://github.com/user-attachments/assets/9f0cc18b-84eb-4ad2-bd11-4465383480fc)
+<video src="/https://github.com/user-attachments/assets/9f0cc18b-84eb-4ad2-bd11-4465383480fc)" controls></video>
 
 ## Funcionalidades Implementadas
 
